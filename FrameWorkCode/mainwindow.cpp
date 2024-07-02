@@ -2429,3 +2429,78 @@ void MainWindow::on_actionEnglish_triggered()
 {
     HinFlag = 0 , SanFlag = 0;
 }
+
+/*-----------------------------------------Subscript feature------------------------------------------*/
+void MainWindow::on_actionSubscript_triggered()
+{
+    // Get the current cursor position
+    QTextCursor cursor = textEdit->textCursor();
+    QString selectedText = cursor.selectedText();
+
+    if(isSub){
+        QTextCharFormat format;
+        format.setFontWeight(QFont::Normal);
+        cursor.mergeCharFormat(format);
+        cursor.insertText(selectedText, format);
+    }
+    else{
+            // Insert a subscript character
+
+    cursor.insertHtml("<sub>" + cursor.selectedText() + "</sub>");
+    }
+    isSub = !isSub;
+}
+
+/*-----------------------------------Superscript feature-----------------------------------------------*/
+void MainWindow::on_actionSuperscript_triggered()
+{
+    // Get the current cursor position
+    QTextCursor cursor = textEdit->textCursor();
+    QString selectedText = cursor.selectedText();
+
+    if(isSup){
+        QTextCharFormat format;
+        format.setFontWeight(QFont::Normal);
+        cursor.mergeCharFormat(format);
+        cursor.insertText(selectedText, format);
+    }
+    else{
+        cursor.insertHtml("<sup>" + cursor.selectedText() + "</sup>");
+    }
+    isSup = !isSup;
+}
+
+/*-----------------------------------Bold & Unbold Feature-----------------------------------------*/
+void MainWindow::on_actionBold_triggered()
+{
+    // Get the current text cursor
+        QTextCursor cursor = ui->textEdit->textCursor();
+
+        // Check if there's a selection
+        if (cursor.hasSelection()) {
+            // Get the selected text
+            QString selectedText = cursor.selectedText();
+
+            if(isBold){
+                QTextCharFormat format;
+                format.setFontWeight(QFont::Normal);
+                cursor.mergeCharFormat(format);
+                cursor.insertText(selectedText, format);
+            }
+            else{
+
+                // Create a new text format with bold font
+                QTextCharFormat format;
+                format.setFontWeight(QFont::Bold);
+
+                // Apply the bold format to the selected text
+                cursor.mergeCharFormat(format);
+
+                // Insert the formatted text back into the text edit
+                cursor.insertText(selectedText, format);
+            }
+            isBold = !isBold;
+        }
+}
+
+
