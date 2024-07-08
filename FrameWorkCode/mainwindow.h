@@ -154,6 +154,9 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    bool isBold;
+    bool isSup;
+    bool isSub;
 
     QString mFilename;
     QString mFilenamejpeg;
